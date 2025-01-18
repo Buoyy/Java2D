@@ -40,7 +40,9 @@ public class GamePanel extends JPanel implements Runnable {
     }
     @Override
     public void run() {
-        // The game loop
+        // The game loop (accumulator/delta method)
+
+        // How it works is that when draw interval of time passes, only then is our game updated
         double drawInterval = 1000000000.0/fps;
         double delta = 0;
         long lastTime = System.nanoTime();
