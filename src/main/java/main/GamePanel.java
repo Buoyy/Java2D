@@ -13,10 +13,10 @@ public class GamePanel extends JPanel implements Runnable {
     public final int tileSize = scale * actualTileSize;
 
     // Screen width and height calculation
-    final int maxCols = 16;
-    final int maxRows = 12;
-    final int width = tileSize * maxCols;
-    final int height = tileSize * maxRows;
+    public final int maxScreenCols = 16;
+    public final int maxScreenRows = 12;
+    public final int screenWidth = tileSize * maxScreenCols;
+    public final int screenHeight = tileSize * maxScreenRows;
 
     // Technical stuff
     int fps = 60;
@@ -29,7 +29,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // A generic constructor
     public GamePanel() {
-        this.setPreferredSize(new Dimension(width, height));
+        this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyHandler);
