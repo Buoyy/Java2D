@@ -17,17 +17,18 @@ public class Player extends Entity {
         this.gp = gp;
         this.keyH = keyH;
         setDefaults();
-        getPlayerImage();
+        getPlayerImage(); 
     }
 
     public void setDefaults() {
         x = 100;
         y = 100;
         speed = 3;
-        direction = "down";
+        direction = "down"; 
     }
 
     public void getPlayerImage() {
+     // Try to load in the player's sprites. 
         try {
             up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/walk/boy_up_1.png")));
             up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/walk/boy_up_2.png")));
@@ -43,7 +44,9 @@ public class Player extends Entity {
     }
 
     public void update() {
+     // This is a double check to stop the animations from playing even when no keys are pressed.
         if (keyH.down || keyH.left || keyH.up || keyH.right) {
+         // Remember, (0, 0) corresponds to the top left corner. y increases downwards and x increases towards right.
             if (keyH.up) {
                 direction = "up";
                 y -= speed;
@@ -61,12 +64,13 @@ public class Player extends Entity {
             if (spriteCounter > 10) { // every 10 draw intervals
                 if (spriteNum == 1) spriteNum = 2;
                 else if (spriteNum == 2) spriteNum = 1;
-                spriteCounter = 0;
+                spriteCounter = 0; // Reset after completing one cycle of the animation
             }
         }
     }
 
     public void draw(Graphics2D g2) {
+     // Switch expression seems much more cool than normal switch statement
         BufferedImage image = switch (direction) {
             case "up" -> (spriteNum == 1) ? up1 : up2;
             case "down" -> (spriteNum == 1) ? down1 : down2;
