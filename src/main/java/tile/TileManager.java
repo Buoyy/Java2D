@@ -51,34 +51,14 @@ public class TileManager {
     }
     public void loadTileImages() {
      // Load in all images for different kinds of tiles
-        try {
-            tiles[0] = new Tile();
-            tiles[0].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/brick.png")));
-            
-            tiles[1] = new Tile();
-            tiles[1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/grass.png")));
-
-            tiles[2] = new Tile();
-            tiles[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/water.png")));
-
-            tiles[3] = new Tile();
-            tiles[3].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/dirty_grass.png")));
-
-            tiles[4] = new Tile();
-            tiles[4].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/dirty_grass_left.png")));
-
-            tiles[5] = new Tile();
-            tiles[5].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/dirty_grass_left_end.png")));
-
-            tiles[6] = new Tile();
-            tiles[6].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/dirty_grass_right.png")));
-
-            tiles[7] = new Tile();
-            tiles[7].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/dirty_grass_right_end.png")));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            loadTile(0, "brick.png");
+            loadTile(1, "grass.png");
+            loadTile(2, "water.png");
+            loadTile(3, "dirty_grass.png");
+            loadTile(4, "dirty_grass_left.png");
+            loadTile(5, "dirty_grass_left_end.png");
+            loadTile(6, "dirty_grass_right.png");
+            loadTile(7, "dirty_grass_right_end.png");
     }
     public void draw(Graphics2D g2) {
      // Method: we start from the 1st column and 1st row, and the top left corner of the map. Draw the corresponding image via it's tile number. Once the final column is reached, we move on to the next row. 
@@ -94,6 +74,14 @@ public class TileManager {
                 row++;
                 y += gp.tileSize;
             }
+        }
+    }
+    private void loadTile(int index, String pathRelTiles) {
+        try {
+            tiles[index] = new Tile();
+            tiles[index].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/"+pathRelTiles)));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
